@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div *ngIf="cocktail" class="row animate__animated animate__bounce animate__fadeIn">
+        <div class="col-md-9">
+            <p><strong>Name:</strong> {{cocktail.strDrink}}</p>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-danger" routerLink="/">Back</a>
+
+        </div>
+
+        <div class="col-md-9" *ngIf="showAllDetails">
+            <p><strong>Identifier:</strong> {{cocktail.idDrink}}</p>
+
+            <p><strong>Ingredients:</strong></p>
+            <p><mat-tab-group fitInkBarToContent>
+                    <mat-tab *ngFor="let ingredient of ingredients" label="{{ingredient.ingredient}}">
+                        {{ingredient.measure}}
+                    </mat-tab>
+                </mat-tab-group></p>
+            <p><strong>Instructions:</strong> {{cocktail.strInstructions}}</p>
+            <p><strong>Glass type:</strong> {{cocktail.strGlass}}</p>
+            <p><strong>Aspect:</strong></p>
+            <img style="width:80%; height:80%;" class="rounded" src="{{cocktail.strDrinkThumb}}" alt="">
+        </div>
+
+        <div class="col-md-9">
+            <button mat-raised-button color="primary" class="mt-4" (click)="changeDetailsState()">
+                {{ showAllDetails ? 'Hide all details' : 'Show all details' }}
+            </button>
+        </div>
+    </div>
+
+</div>

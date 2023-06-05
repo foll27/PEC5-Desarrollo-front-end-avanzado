@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="d-flex justify-content-end">
+        <div class="btn-group float-right">
+            <button class="btn btn-primary" (click)="changeView('cards')" [class.active]="currentView === 'cards'">
+                <mat-icon>view_list</mat-icon>
+            </button>
+            <button class="btn btn-primary" (click)="changeView('table')" [class.active]="currentView === 'table'">
+                <mat-icon>view_module</mat-icon>
+            </button>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="currentView === 'cards'">
+        <div class="spinner-container" *ngIf="spinner">
+            <mat-spinner diameter="50" color="primary"></mat-spinner>
+        </div>
+        <div class="row">
+            <ul class="list-group">
+                <mat-card *ngFor="let cocktail of cocktails" [routerLink]="['/cocktail', cocktail.idDrink]"
+                    [@cocktailListAnimation]
+                    class="list-group-item list-group-item-action animate__animated animate__bounce animate__fadeIn">
+                    <app-card [item]="cocktail"></app-card>
+                </mat-card>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf="currentView === 'table'">
+        <div class="spinner-container" *ngIf="spinner">
+            <mat-spinner diameter="50" color="primary"></mat-spinner>
+        </div>
+
+        <mat-grid-list cols="4" rowHeight="2:1" [@cocktailListAnimation]>
+            <mat-grid-tile *ngFor="let cocktail of cocktails" [routerLink]="['/cocktail', cocktail.idDrink] ">
+                <mat-card>
+                    <app-card [item]="cocktail"></app-card>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
