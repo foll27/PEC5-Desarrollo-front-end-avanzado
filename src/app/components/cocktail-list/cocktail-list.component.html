@@ -32,7 +32,7 @@
             <mat-spinner diameter="50" color="primary"></mat-spinner>
         </div>
 
-        <mat-grid-list cols="4" rowHeight="2:1" [@cocktailListAnimation]>
+        <mat-grid-list cols="4" rowHeight="1:1" [@cocktailListAnimation]>
             <mat-grid-tile *ngFor="let cocktail of cocktails" [routerLink]="['/cocktail', cocktail.idDrink] ">
                 <mat-card>
                     <app-card [item]="cocktail"></app-card>
